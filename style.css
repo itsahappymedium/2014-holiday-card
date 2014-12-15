@@ -1,0 +1,16 @@
+body {
+    padding: 1rem 0;
+}
+
+img,
+video,
+audio {
+    max-width: 100%;
+    height: auto;
+}
+
+.wrapper {
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: 1rem;
+}

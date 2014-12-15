@@ -3,8 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Happy Holidays from Happy Medium: 2014</title>
+    <link rel="stylesheet" href="bower_components/normalize.css/normalize.css">
+    <link rel="stylesheet" href="bower_components/mediaelement/build/mediaelementplayer.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Happy Holidays from Happy Medium</h1>
+    <div class="wrapper">
+        <h1>Happy Holidays from Happy Medium</h1>
+
+        <ul>
+            <li><a href="#" data-video="media/gm_1.mp4">Gateway Video #1</a></li>
+            <li><a href="#" data-video="media/gm_2.mp4">Gateway Video #2</a></li>
+            <li><a href="#" data-video="media/gm_3.mp4">Gateway Video #3</a></li>
+        </ul>
+
+        <video src="media/gm_1.mp4" loop data-video-player></video>
+    </div>
+
+    <script src="bower_components/mediaelement/build/jquery.js"></script>
+    <script src="bower_components/mediaelement/build/mediaelement-and-player.min.js"></script>
+    <script src="bower_components/fitvids/jquery.fitvids.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
