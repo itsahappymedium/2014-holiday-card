@@ -2,15 +2,15 @@
 
 var CARD = {
     audio: {},
-    clipLength: 30,
+    // clipLength: 30,
     paused: true,
     player: {},
     playerElement: '',
-    timecode: 0,
-    timer: 0,
+    // timecode: 0,
+    // timer: 0,
 
     init: function() {
-        this.timecode = 0;
+        // this.timecode = 0;
 
         this.audioElement = '[data-audio-player]';
         this.playerElement = '[data-video-player]';
@@ -28,13 +28,13 @@ var CARD = {
         }.bind(this));
 
         $(this.playerElement).on('pause', function() {
-            this.pauseTimer();
+            // this.pauseTimer();
             this.pauseAudio();
         }.bind(this));
 
         $(this.playerElement).on('playing', function() {
-            console.log('playing');
-            this.startTimer();
+            // console.log('playing');
+            // this.startTimer();
             this.startAudio();
         }.bind(this));
     },
@@ -90,11 +90,11 @@ var CARD = {
 
     swapVideo: function( video ) {
         // Set the new video source
-        console.log(video);
+        // console.log(video);
         this.player.setSrc(video);
 
         // Pick up where we are in the current timecode
-        this.player.setCurrentTime( this.timecode );
+        // this.player.setCurrentTime( this.timecode );
         this.player.play();
     },
 
