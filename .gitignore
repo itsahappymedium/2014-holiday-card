@@ -32,6 +32,7 @@ media/*
 !media/.gitkeep
 css/*.css
 .DS_Store
+.sass-cache
 
 # Bower stuff
 bower_components

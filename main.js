@@ -41,7 +41,7 @@ var CARD = {
 
     initPlayers: function() {
         this.player = new MediaElementPlayer(this.playerElement, {
-            features: ['playpause'],
+            features: [],
             pauseOtherPlayers: false
         });
         this.audio = new MediaElementPlayer(this.audioElement, {
