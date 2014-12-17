@@ -1,6 +1,7 @@
 'use strict';
 
 var CARD = {
+    audio: {},
     clipLength: 30,
     paused: true,
     player: {},
@@ -11,8 +12,9 @@ var CARD = {
     init: function() {
         this.timecode = 0;
 
+        this.audioElement = '[data-audio-player]';
         this.playerElement = '[data-video-player]';
-        this.initVideo();
+        this.initPlayers();
 
         $('body').fitVids();
 
@@ -27,15 +29,29 @@ var CARD = {
 
         $(this.playerElement).on('pause', function() {
             this.pauseTimer();
+            this.pauseAudio();
         }.bind(this));
 
         $(this.playerElement).on('playing', function() {
+            console.log('playing');
             this.startTimer();
+            this.startAudio();
         }.bind(this));
     },
 
-    initVideo: function() {
-        this.player = new MediaElementPlayer(this.playerElement);
+    initPlayers: function() {
+        this.player = new MediaElementPlayer(this.playerElement, {
+            features: ['playpause'],
+            pauseOtherPlayers: false
+        });
+        this.audio = new MediaElementPlayer(this.audioElement, {
+            features: [],
+            pauseOtherPlayers: false
+        });
+    },
+
+    pauseAudio: function() {
+        this.audio.pause();
     },
 
     pauseTimer: function() {
@@ -51,6 +67,10 @@ var CARD = {
     restartPlayer: function() {
         this.player.setCurrentTime(0);
         this.player.play();
+    },
+
+    startAudio: function() {
+        this.audio.play();
     },
 
     startTimer: function() {

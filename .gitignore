@@ -30,6 +30,8 @@ node_modules
 # Media (videos)
 media/*
 !media/.gitkeep
+css/*.css
+.DS_Store
 
 # Bower stuff
 bower_components
