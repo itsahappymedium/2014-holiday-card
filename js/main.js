@@ -68,6 +68,7 @@ var CARD = {
             features: [],
             pauseOtherPlayers: false
         });
+        new MediaElementPlayer('[data-fallback-video]');
 
         return this;
     },

@@ -122,7 +122,9 @@ h1 {
 
     // Use modernizr check to see if we can show
     .videoautoplay & {
-        display: block;
+        @media (min-width: $bp-med) {
+            display: block;
+        }
     }
 }
 
@@ -151,7 +153,9 @@ h1 {
     display: block;
 
     .videoautoplay & {
-        display: none;
+        @media (min-width: $bp-med) {
+            display: none;
+        }
     }
 }
 
