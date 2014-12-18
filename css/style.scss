@@ -117,18 +117,13 @@ h1 {
     border-radius: 100%;
     margin-top: 5rem;
 
-    // &::after {
-    //     content: '';
-    //     border: 5px solid red;
-    //     border-radius: 100%;
-    //     width: $bp-med;
-    //     height: $bp-med;
-    //     position: absolute;
-    //     top: 0;
-    //     right: 0;
-    //     left: 0;
-    //     z-index: 10;
-    // }
+    // Display none by default for progressive enhancement
+    display: none;
+
+    // Use modernizr check to see if we can show
+    .videoautoplay & {
+        display: block;
+    }
 }
 
 .people {
@@ -141,5 +136,13 @@ h1 {
     img {
       border: 10px solid #f16378;
       border-radius: 100%;
+    }
+}
+
+.mobile-video {
+    display: block;
+
+    .videoautoplay & {
+        display: none;
     }
 }

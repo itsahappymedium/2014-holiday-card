@@ -12,6 +12,14 @@ var CARD = {
     init: function() {
         // this.timecode = 0;
 
+        // If we can't autoplay, we're probably on a mobile
+        // device. Initialize the fallback video and exit.
+        if ( ! Modernizr.videoautoplay ) {
+            this.player = new MediaElementPlayer('[data-fallback-video]');
+
+            return;
+        }
+
         this.audioElement = '[data-audio-player]';
         this.playerElement = '[data-video-player]';
         this.initPlayers();
