@@ -1,7 +1,8 @@
 var gulp = require('gulp'),
     compass = require('gulp-compass'),
     livereload = require('gulp-livereload'),
-    autoprefixer = require('gulp-autoprefixer');
+    autoprefixer = require('gulp-autoprefixer'),
+    rsync = require('gulp-rsync');
 
 gulp.task('compass', function() {
     gulp.src('./css/*.scss')
@@ -34,6 +35,18 @@ gulp.task('watch', function() {
     })
 });
 
+gulp.task('deploy', function() {
+    gulp.src('./')
+        .pipe(rsync({
+            root: './',
+            destination: '~/apps/holidaycard/public',
+            username: 'serverpilot',
+            hostname: '104.131.181.203',
+            recursive: true,
+            exclude: ['.git','*.scss','*.md','bower.json','package.json','gulpfile.js','node_modules']
+        }));
+});
+
 gulp.task('default', function() {
-    gulp.run('compass');
+    gulp.run(['compass']);
 });
