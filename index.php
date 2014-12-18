@@ -40,6 +40,7 @@
         <?php
         $team_members = array(
             'Angela',
+            'Andrew',
             'Doug',
             'Jill',
             'Josh',
