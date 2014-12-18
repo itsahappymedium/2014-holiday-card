@@ -12,7 +12,7 @@ var CARD = {
      */
     init: function() {
         // If we can't autoplay, we're probably on a mobile
-        console.log(typeof Modernizr.videoautoplay);
+        // console.log(typeof Modernizr.videoautoplay);
         // device. Initialize the fallback video and exit.
         if ( typeof Modernizr.videoautoplay === 'boolean' && ! Modernizr.videoautoplay ) {
             return;
