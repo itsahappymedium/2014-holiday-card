@@ -12,3 +12,7 @@
 - Add some videos to the `/media` folder
 - Set their locations/values in the `index.html` page
 - Run `gulp` to compile your styles
+
+## Credits
+
+Thanks to Hugo Giraudel for his ["Items on Circle with CSS"](http://hugogiraudel.com/2013/04/02/items-on-circle/) article, which served as inspiration for this.
