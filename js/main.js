@@ -2,16 +2,15 @@
 
 var CARD = {
     audio: {},
-    // clipLength: 30,
     paused: true,
     player: {},
     playerElement: '',
-    // timecode: 0,
-    // timer: 0,
 
+    /**
+     * Initialize function
+     * @return {object} This
+     */
     init: function() {
-        // this.timecode = 0;
-
         // If we can't autoplay, we're probably on a mobile
         // device. Initialize the fallback video and exit.
         if ( ! Modernizr.videoautoplay ) {
@@ -36,17 +35,20 @@ var CARD = {
         }.bind(this));
 
         $(this.playerElement).on('pause', function() {
-            // this.pauseTimer();
             this.pauseAudio();
         }.bind(this));
 
         $(this.playerElement).on('playing', function() {
-            // console.log('playing');
-            // this.startTimer();
             this.startAudio();
         }.bind(this));
+
+        return this;
     },
 
+    /**
+     * Initialize the audio and video players
+     * @return {object} this
+     */
     initPlayers: function() {
         this.player = new MediaElementPlayer(this.playerElement, {
             features: [],
@@ -56,71 +58,56 @@ var CARD = {
             features: [],
             pauseOtherPlayers: false
         });
+
+        return this;
     },
 
+    /**
+     * Pause the audio player
+     * @return {object} this
+     */
     pauseAudio: function() {
         this.audio.pause();
+
+        return this;
     },
 
-    pauseTimer: function() {
-        window.clearInterval(this.timer);
-
-        this.paused = true;
-
-        console.log('Timer paused');
-
-        return this.timer;
-    },
-
+    /**
+     * Restart a player
+     * @return {object} this
+     */
     restartPlayer: function() {
         this.player.setCurrentTime(0);
         this.player.play();
+
+        return this;
     },
 
+    /**
+     * Start the audio
+     * @return {object} this
+     */
     startAudio: function() {
         this.audio.play();
+
+        return this;
     },
 
-    startTimer: function() {
-        // Bail if there's already a timer running
-        if ( ! this.paused ) {
-            return;
-        }
-
-        this.timer = window.setInterval( this.updateTimecode.bind(this), 1000 );
-
-        this.paused = false;
-
-        console.log('Timer started');
-
-        return this.timer;
-    },
-
+    /**
+     * Switch out the video with the selected one
+     * @param  {string} video Video URL
+     * @return {object}       this
+     */
     swapVideo: function( video ) {
         // Set the new video source
-        // console.log(video);
         this.player.setSrc(video);
-
-        // Pick up where we are in the current timecode
-        // this.player.setCurrentTime( this.timecode );
         this.player.play();
+
+        return this;
     },
-
-    updateTimecode: function() {
-
-        if ( ++this.timecode > this.clipLength ) {
-            this.timecode = 0;
-
-            // Set video to beginning, too.
-            this.restartPlayer();
-        }
-
-        console.log(this.timecode);
-
-        return this.timecode;
-    }
 };
 
+// Kick it off when we're loaded
 $(document).ready(function() {
     CARD.init();
 });
