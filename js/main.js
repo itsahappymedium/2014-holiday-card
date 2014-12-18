@@ -32,16 +32,17 @@ var CARD = {
         $('body').fitVids();
 
         // Listen for clip clicks
-        $('[data-video]').on('click', function(e) {
+        $('[data-video-mp4]').on('click', function(e) {
             e.preventDefault();
 
-            var video = $(e.currentTarget).data('video');
+            var videoMp4 = $(e.currentTarget).data('video-mp4'),
+                videoWebm = $(e.currentTarget).data('video-webm');
 
             // Show active state
             $('.people li').removeClass('active');
             $(e.currentTarget).parent().addClass('active');
 
-            this.swapVideo(video);
+            this.swapVideo(videoMp4, videoWebm);
         }.bind(this));
 
         $(this.playerElement).on('pause', function() {
@@ -109,9 +110,12 @@ var CARD = {
      * @param  {string} video Video URL
      * @return {object}       this
      */
-    swapVideo: function( video ) {
+    swapVideo: function( videoMp4, videoWebm ) {
         // Set the new video source
-        this.player.setSrc(video);
+        this.player.setSrc([
+            { src: videoMp4, type:'video/mp4' },
+            { src: videoWebm, type:'video/webm' }
+        ]);
         this.player.play();
 
         return this;

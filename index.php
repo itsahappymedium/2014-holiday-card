@@ -31,79 +31,47 @@
     <div class="wrapper">
 
         <div class="mobile-video">
-            <video src="media/group_combo.mp4" data-fallback-video></video>
+            <video data-fallback-video>
+                <source type="video/mp4" src="media/group_combo.mp4" />
+                <source type="video/webm" src="media/group_combo.webmsd.webm" />
+            </video>
         </div>
+
+        <?php
+        $team_members = array(
+            'Angela',
+            'Doug',
+            'Jill',
+            'Josh',
+            'Julie',
+            'Katie',
+            'Kristen',
+            'Lauren',
+            'Nick',
+            'Sara',
+            'Sarah',
+            'Tony',
+            'Georgia'
+        );
+        ?>
 
         <div class="ball">
             <ul class="people">
-                <li>
-                    <a href="#" data-video="media/Angela.mp4" title="Angela">
-                        <img src="img/Angela.png" alt="Angela">
-                    </a>
-                </li>
-                <li>
-                    <a href="#" data-video="media/Doug.mp4" title="Doug">
-                        <img src="img/Doug.png" alt="Doug">
-                    </a>
-                </li>
-                <li>
-                    <a href="#" data-video="media/Jill.mp4" title="Jill">
-                        <img src="img/Jill.png" alt="Jill">
-                    </a>
-                </li>
-                <li>
-                    <a href="#" data-video="media/Josh.mp4" title="Josh">
-                        <img src="img/Josh.png" alt="Josh">
-                    </a>
-                </li>
-                <li>
-                    <a href="#" data-video="media/Julie.mp4" title="Julie">
-                        <img src="img/Julie.png" alt="Julie">
-                    </a>
-                </li>
-                <li>
-                    <a href="#" data-video="media/Katie.mp4" title="Katie">
-                        <img src="img/Katie.png" alt="Katie">
-                    </a>
-                </li>
-                <li>
-                    <a href="#" data-video="media/Kristen.mp4" title="Kristen">
-                        <img src="img/Kristen.png" alt="Kristen">
-                    </a>
-                </li>
-                <li>
-                    <a href="#" data-video="media/Lauren.mp4" title="Lauren">
-                        <img src="img/Lauren.png" alt="Lauren">
-                    </a>
-                </li>
-                <li>
-                    <a href="#" data-video="media/Nick.mp4" title="Nick">
-                        <img src="img/Nick.png" alt="Nick">
-                    </a>
-                </li>
-                <li>
-                    <a href="#" data-video="media/Sara.mp4" title="Sara">
-                        <img src="img/Sara.png" alt="Sara">
-                    </a>
-                </li>
-                <li>
-                    <a href="#" data-video="media/Sarah.mp4" title="Sarah">
-                        <img src="img/Sarah.png" alt="Sarah">
-                    </a>
-                </li>
-                <li>
-                    <a href="#" data-video="media/Tony.mp4" title="Tony">
-                        <img src="img/Tony.png" alt="Tony">
-                    </a>
-                </li>
-                <li>
-                    <a href="#" data-video="media/Georgia.mp4" title="Georgia">
-                        <img src="img/Georgia.png" alt="Georgia">
-                    </a>
-                </li>
+                <?php foreach ($team_members as $team_member) : ?>
+                    <li>
+                        <a href="#" title="<?php echo $team_member; ?>"
+                        data-video-mp4="media/<?php echo $team_member; ?>.mp4"
+                        data-video-webm="media/<?php echo $team_member; ?>.webmsd.webm">
+                            <img src="img/<?php echo $team_member; ?>.png" alt="<?php echo $team_member; ?>">
+                        </a>
+                    </li>
+                <?php endforeach; ?>
             </ul>
 
-            <video src="media/Sarah.mp4" loop data-video-player></video>
+            <video loop data-video-player>
+                <source type="video/mp4" src="media/Sarah.mp4" />
+                <source type="video/webm" src="media/Sarah.webmsd.webm" />
+            </video>
         </div>
 
         <div class="share">
