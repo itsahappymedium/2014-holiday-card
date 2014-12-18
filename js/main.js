@@ -15,8 +15,6 @@ var CARD = {
         console.log(typeof Modernizr.videoautoplay);
         // device. Initialize the fallback video and exit.
         if ( typeof Modernizr.videoautoplay === 'boolean' && ! Modernizr.videoautoplay ) {
-            this.player = new MediaElementPlayer('[data-fallback-video]');
-
             return;
         }
 
