@@ -12,9 +12,17 @@ var CARD = {
      */
     init: function() {
         // If we can't autoplay, we're probably on a mobile
+        console.log(typeof Modernizr.videoautoplay);
         // device. Initialize the fallback video and exit.
-        if ( ! Modernizr.videoautoplay ) {
+        if ( typeof Modernizr.videoautoplay === 'boolean' && ! Modernizr.videoautoplay ) {
             this.player = new MediaElementPlayer('[data-fallback-video]');
+
+            return;
+        }
+
+        // Sometimes it takes a while. Try the test again in one second
+        if ( typeof Modernizr.videoautoplay === 'undefined' ) {
+            setTimeout( this.init.bind(this), 100 );
 
             return;
         }
@@ -30,6 +38,10 @@ var CARD = {
             e.preventDefault();
 
             var video = $(e.currentTarget).data('video');
+
+            // Show active state
+            $('.people li').removeClass('active');
+            $(e.currentTarget).parent().addClass('active');
 
             this.swapVideo(video);
         }.bind(this));

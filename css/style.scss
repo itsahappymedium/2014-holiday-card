@@ -17,51 +17,51 @@ $bp-med: 46.8em;
           $item-size, //Item size
           $class-for-IE: false //Base class name, false means use of pseudo-selectors
        ) {
-  $half-item:     $item-size / 2;
-  $half-parent: $circle-size / 2;
+    $half-item:     $item-size / 2;
+    $half-parent: $circle-size / 2;
 
-  position: relative;               /* [1] */
-  width:  $circle-size;
-  height: $circle-size;
-  padding: 0;
-  border-radius: 50%;
-  list-style: none;                 /* [2] */
-  @include box-sizing(content-box); /* [3] */
+    position: relative;               /* [1] */
+    width:  $circle-size;
+    height: $circle-size;
+    padding: 0;
+    border-radius: 50%;
+    list-style: none;                 /* [2] */
+    @include box-sizing(content-box); /* [3] */
 
-  > * {                             /* [4] */
-    display: block;
-    position: absolute;
-    top:  50%;
-    left: 50%;
-    width:  $item-size;
-    height: $item-size;
-    margin: -$half-item;
+    > * {                             /* [4] */
+        display: block;
+        position: absolute;
+        top:  50%;
+        left: 50%;
+        width:  $item-size;
+        height: $item-size;
+        margin: -$half-item;
 
-    $angle: 360 / $nb-items;
-    $rot: 0;
-    @for $i from 1 to $nb-items+1 {
+        $angle: 360 / $nb-items;
+        $rot: 0;
+        @for $i from 1 to $nb-items+1 {
 
-      // If no support for IE8-
+            // If no support for IE8-
 
-      @if $class-for-IE == false {
-        &:nth-of-type(#{$i}) {
-          @include transform(rotate(#{$rot}deg) translate($half-parent) rotate(-#{$rot}deg));
+            @if $class-for-IE == false {
+                &:nth-of-type(#{$i}) {
+                    @include transform(rotate(#{$rot}deg) translate($half-parent) rotate(-#{$rot}deg));
+                }
+            }
+
+            // If support for IE8-
+
+            @else {
+                &.#{$class-for-IE}#{$i} {
+                    // If CSS transforms are not supported
+                    $mt: sin($rot * pi() / 180) * $half-parent - $half-item;
+                    $ml: cos($rot * pi() / 180) * $half-parent - $half-item;
+                    margin: $mt 0 0 $ml;
+                }
+            }
+            $rot: $rot + $angle;
         }
-      }
-
-      // If support for IE8-
-
-      @else {
-        &.#{$class-for-IE}#{$i} {
-          // If CSS transforms are not supported
-          $mt: sin($rot * pi() / 180) * $half-parent - $half-item;
-          $ml: cos($rot * pi() / 180) * $half-parent - $half-item;
-          margin: $mt 0 0 $ml;
-        }
-      }
-      $rot: $rot + $angle;
     }
-  }
 }
 
 body {
@@ -134,8 +134,16 @@ h1 {
     @include putOnCircle(13, $bp-med, 100px);
 
     img {
-      border: 10px solid #f16378;
-      border-radius: 100%;
+        border: 10px solid #f16378;
+        border-radius: 100%;
+    }
+
+    li {
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    li.active {
+        opacity: 0.5;
     }
 }
 
